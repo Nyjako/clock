@@ -3,6 +3,8 @@
 A simple clock application written in C++ using SDL2, featuring a hand-drawn font.
 Inspired by clock used by [Tsoding](https://www.twitch.tv/tsoding) in his streams
 
+<img src="preview/clock.webp" alt="Animated clock preview" />
+
 ## Table of Contents
 
 - [Introduction](#introduction)
