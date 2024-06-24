@@ -2,3 +2,7 @@ Clock
 Clock.exe
 obj/*
 *.d
+
+# unecessary vscode files
+/.vscode/launch.json
+/.vscode/settings.json

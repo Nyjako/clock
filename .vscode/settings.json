@@ -1,9 +1,0 @@
-{
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "/programs/Github/c++/clock_sdl",
-            "binaryPath": "/programs/Github/c++/clock_sdl/Clock",
-            "binaryArgs": []
-        }
-    ]
-}

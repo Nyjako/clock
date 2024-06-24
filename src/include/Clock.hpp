@@ -35,20 +35,24 @@
 class Clock
 {
 private:
-    SDL_Window *window;           /**< Pointer to the SDL window. */
-    SDL_Renderer *renderer;       /**< Pointer to the SDL renderer. */
-    SDL_Surface *font;            /**< Pointer to the SDL surface for the font. */
-    SDL_Texture *font_tex;        /**< Pointer to the SDL texture for the font. */
-    int quit = 0;                 /**< Flag to indicate if the application should quit. */
+    SDL_Window   *window;        /**< Pointer to the SDL window.                       */
+    SDL_Renderer *renderer;      /**< Pointer to the SDL renderer.                     */
+    SDL_Surface  *font;          /**< Pointer to the SDL surface for the font.         */
+    SDL_Texture  *font_tex;      /**< Pointer to the SDL texture for the font.         */
+    int quit = 0;                /**< Flag to indicate if the application should quit. */
 
 public:
     /**
      * @brief Constructor for the Clock class.
+     * 
+     * It inits SDL SDL_image creates window load font 
+     * prepare renderer and init random
      */
     Clock();
 
     /**
      * @brief Destructor for the Clock class.
+     *
      */
     ~Clock();
 
