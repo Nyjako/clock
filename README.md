@@ -3,14 +3,21 @@
 A simple clock application written in C++ using SDL2, featuring a hand-drawn font.
 Inspired by clock used by [Tsoding](https://www.twitch.tv/tsoding) in his streams
 
-<img src="preview/clock.webp" alt="Animated clock preview" />
+- **Clock:**
+<img src="preview/clock.gif" alt="Animated clock preview" />
+
+- **Timer:**
+<img src="preview/timer.gif" alt="Animated timer preview" />
+
+- **Countdown:**
+<img src="preview/countdown.gif" alt="Animated countdown preview" />
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Requirements](#requirements)
-- [Installation](#installation)
+- [Build](#build)
 - [Usage](#usage)
 - [Planned Features](#planned-features)
 - [License](#license)
@@ -22,6 +29,8 @@ This is a basic clock application built using SDL2. The clock displays the curre
 ## Features
 
 - Displays the current time
+- Countdown timer
+- Stopwatch timer
 
 ## Requirements
 
@@ -32,7 +41,7 @@ To build and run this project, you need the following:
 - SDL2
 - SDL2_image
 
-## Installation
+## Build
 1. **Clone the repository:**
     ```sh
     git clone https://github.com/nyjako/clock.git
@@ -45,15 +54,35 @@ To build and run this project, you need the following:
 
 ## Usage
 
-Run the clock application:
+Run the clock application with the desired mode:
 
 ```sh
-./Clock
+./Clock <mode> [<duration>]
 ```
+
+### Modes
+
+- `clock` : Displays the current system time.
+    ```sh
+    ./Clock clock
+    ```
+
+- `countdown <s>` : Runs a countdown for the specified duration in seconds.
+    ```sh
+    ./Clock countdown 10
+
+- `timer` : Runs a stopwatch timer that counts from 0.
+    ```sh
+    ./Clock timer
+
+
 
 ## Planned Features
 
-- Timer function
+- [X] Timer function
+- [X] Countdown function
+    - [ ] Countdown with minutes and hours as argument
+    - [ ] Play audio when countdown finish
 
 ## License
 
