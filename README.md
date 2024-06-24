@@ -74,8 +74,7 @@ Run the clock application with the desired mode:
 - `timer` : Runs a stopwatch timer that counts from 0.
     ```sh
     ./Clock timer
-
-
+    ```
 
 ## Planned Features
 
