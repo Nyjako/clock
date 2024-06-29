@@ -80,7 +80,7 @@ Run the clock application with the desired mode:
 
 - [X] Timer function
 - [X] Countdown function
-    - [ ] Countdown with minutes and hours as argument
+    - [X] Countdown with minutes and hours as argument
     - [ ] Play audio when countdown finish
 
 ## License

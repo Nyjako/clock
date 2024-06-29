@@ -9,9 +9,15 @@ LDFLAGS =
 
 # Makefile settings - Can be customized.
 APPNAME = Clock
+VERSION = \"1.1.0\"
 EXT = .cpp
 SRCDIR = src
 OBJDIR = obj
+
+# Additional data flags
+DATA_FLAGS = -DAPP_NAME=\"$(APPNAME)\" \
+			 -DAPP_VERSION=$(VERSION)
+CXXFLAGS := $(CXXFLAGS) $(DATA_FLAGS)
 
 # SDL2 config
 SDL2_CFLAGS := $(shell sdl2-config --cflags)
