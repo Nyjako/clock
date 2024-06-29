@@ -67,9 +67,10 @@ Run the clock application with the desired mode:
     ./Clock clock
     ```
 
-- `countdown <s>` : Runs a countdown for the specified duration in seconds.
+- `countdown <duration>` : Runs a countdown for the specified duration.
     ```sh
-    ./Clock countdown 10
+    ./Clock countdown 10s 5m 3h
+    ```
 
 - `timer` : Runs a stopwatch timer that counts from 0.
     ```sh
