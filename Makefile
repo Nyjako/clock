@@ -56,8 +56,12 @@ $(APPNAME): $(OBJ)
 # Includes all .h files
 -include $(DEP)
 
+# Rule to create obj directory if it doesn't exist
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
 # Building rule for .o files and its .c/.cpp in combination with all .h
-$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
+$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT) | $(OBJDIR)
 	$(CC) $(CXXFLAGS) -o $@ -c $<
 
 #######################################################################
@@ -70,7 +74,7 @@ TESTSRCS = $(wildcard $(TESTSDIR)/*$(EXT))
 TESTBINS = $(TESTSRCS:$(TESTSDIR)/%$(EXT)=$(TESTSDIR)/%)
 
 # Building rule for test .o files
-$(OBJDIR)/%.test.o: $(TESTSDIR)/%$(EXT)
+$(OBJDIR)/%.test.o: $(TESTSDIR)/%$(EXT) | $(OBJDIR)
 	$(CC) $(CXXFLAGS) -o $@ -c $<
 
 # Builds test executables
