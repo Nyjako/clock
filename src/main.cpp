@@ -1,9 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include <ostream>
-#include <string>
-#include <cstring>
-#include <cctype>
+#include "include/helper.hpp"
 #include "include/Clock.hpp"
 
 #ifndef APP_NAME
@@ -19,6 +16,7 @@ void print_help(char* argv0, std::ostream& out)
     out << APP_NAME << " Application v" << APP_VERSION << std::endl;
     out << "A simple clock application written in C++ using SDL2, featuring a hand-drawn font." << std::endl;
     out << "Inspired by clock used by [Tsoding](https://www.twitch.tv/tsoding) in his streams." << std::endl;
+    out << std::endl;
     out << "GitHub: https://github.com/Nyjako/clock" << std::endl;
     out << std::endl;
     out << "Usage: " << argv0 << " <mode> [<duration>]" << std::endl;
@@ -36,65 +34,6 @@ void print_help(char* argv0, std::ostream& out)
     out << std::endl;
     out << "Commands:" << std::endl;
     out << "  h / help - Show this help message." << std::endl;
-}
-
-bool isValidNumber(const char* str) {
-    while (*str) {
-        if (!isdigit(*str)) {
-            return false;
-        }
-        str++;
-    }
-    return true;
-}
-
-int parse_duration(char* arg)
-{
-    int unit_multiplier = 0;
-
-    if (arg && strlen(arg) > 0) {
-        size_t length = strlen(arg);
-
-        if (length < 2) {
-            std::cerr << "The input \"" << arg << "\" is too short to be a valid number." << std::endl;
-            return 0;
-        }
-
-        char unit = arg[length - 1];
-        switch (unit) {
-            case 'S':
-            case 's':
-                unit_multiplier = 0;
-                break;
-            case 'M':
-            case 'm':
-                unit_multiplier = 60;
-                break;
-            case 'H':
-            case 'h':
-                unit_multiplier = 3600;
-                break;
-            default:
-                std::cerr << "Unknown unit '" << unit << '\'' << std::endl;
-                return 0;
-        }
-
-        char* temp = new char[length];
-        strncpy(temp, arg, length - 1);
-        temp[length - 1] = '\0'; // Null-terminate the new string
-
-        if (!isValidNumber(temp)) {
-            std::cerr << "Number is not valid \"" << temp << '"' << std::endl;
-            delete[] temp;
-            return 0;
-        }
-
-        int number = std::strtol(temp, nullptr, 10);
-        delete[] temp;
-        return number * unit_multiplier;
-    }
-
-    return 0;
 }
 
 int main(int argc, char* argv[]) 
