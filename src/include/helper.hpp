@@ -10,6 +10,10 @@
 #include <cctype>
 
 bool isValidNumber(const char* str) {
+    if (strlen(str) < 1) {
+        return false;
+    }
+
     while (*str) {
         if (!isdigit(*str)) {
             return false;
@@ -19,7 +23,7 @@ bool isValidNumber(const char* str) {
     return true;
 }
 
-int parse_duration(char* arg)
+int parse_duration(const char* arg)
 {
     int unit_multiplier = 0;
 
@@ -27,7 +31,9 @@ int parse_duration(char* arg)
         size_t length = strlen(arg);
 
         if (length < 2) {
+            #ifndef SILENT
             std::cerr << "The input \"" << arg << "\" is too short to be a valid number." << std::endl;
+            #endif
             return 0;
         }
 
@@ -46,7 +52,9 @@ int parse_duration(char* arg)
                 unit_multiplier = 3600;
                 break;
             default:
+                #ifndef SILENT
                 std::cerr << "Unknown unit '" << unit << '\'' << std::endl;
+                #endif
                 return 0;
         }
 
@@ -55,7 +63,9 @@ int parse_duration(char* arg)
         temp[length - 1] = '\0'; // Null-terminate the new string
 
         if (!isValidNumber(temp)) {
+            #ifndef SILENT
             std::cerr << "Number is not valid \"" << temp << '"' << std::endl;
+            #endif
             delete[] temp;
             return 0;
         }

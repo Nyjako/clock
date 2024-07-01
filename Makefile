@@ -60,11 +60,36 @@ $(APPNAME): $(OBJ)
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
 	$(CC) $(CXXFLAGS) -o $@ -c $<
 
+#######################################################################
+############################### Tests #################################
+#######################################################################
+
+# Tests settings
+TESTSDIR = tests
+TESTSRCS = $(wildcard $(TESTSDIR)/*$(EXT))
+TESTBINS = $(TESTSRCS:$(TESTSDIR)/%$(EXT)=$(TESTSDIR)/%)
+
+# Building rule for test .o files
+$(OBJDIR)/%.test.o: $(TESTSDIR)/%$(EXT)
+	$(CC) $(CXXFLAGS) -o $@ -c $<
+
+# Builds test executables
+$(TESTSDIR)/%: $(OBJDIR)/%.test.o
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+# Runs the tests
+.PHONY: test
+test: $(TESTBINS)
+	@for test in $^; do \
+		echo "Running $$test..."; \
+		./$$test || exit 1; \
+	done
+
 ################### Cleaning rules for Unix-based OS ###################
 # Cleans complete project
 .PHONY: clean
 clean:
-	$(RM) $(DELOBJ) $(DEP) $(APPNAME)
+	$(RM) $(DELOBJ) $(DEP) $(APPNAME) $(OBJDIR)/*.test.o $(TESTBINS)
 
 # Cleans only all files with the extension .d
 .PHONY: cleandep
@@ -75,7 +100,7 @@ cleandep:
 # Cleans complete project
 .PHONY: cleanw
 cleanw:
-	$(DEL) $(WDELOBJ) $(DEP) $(APPNAME)$(EXE)
+	$(DEL) $(WDELOBJ) $(DEP) $(APPNAME)$(EXE) $(OBJDIR)\\*.test.o $(TESTBINS:.exe)
 
 # Cleans only all files with the extension .d
 .PHONY: cleandepw
